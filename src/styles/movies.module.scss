@@ -1,0 +1,56 @@
+.moviesContainer {
+    padding: 20px;
+    background-color: #f8f9fa;
+  
+    h1 {
+      color: #343a40;
+      text-align: center;
+    }
+  
+    .moviesList {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .movieItem {
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      img {
+        width: 100%;
+        height: auto;
+      }
+  
+      .movieDetails {
+        padding: 15px;
+  
+        h2 {
+          margin: 10px 0;
+          font-size: 1.5rem;
+          color: #343a40;
+        }
+  
+        p {
+          margin: 5px 0;
+          color: #666;
+  
+          &:first-of-type {
+            margin-top: 0;
+          }
+  
+          strong {
+            color: #343a40;
+          }
+        }
+      }
+    }
+  }
+  
