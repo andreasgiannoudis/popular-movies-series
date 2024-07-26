@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../styles/layout.module.scss';
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
   return (
@@ -16,6 +17,7 @@ const Layout = ({ children }) => {
       <main className={styles.main}>
         {children}
       </main>
+      <Footer />
     </div>
   );
 };
