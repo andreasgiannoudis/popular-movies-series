@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import styles from '../styles/footer.module.scss';
 
 const Footer = () => {
@@ -22,13 +22,10 @@ const Footer = () => {
         <div className={styles.socialMedia}>
           <h3>Follow Us</h3>
           <div className={styles.icons}>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a href="#" target="_blank" rel="noopener noreferrer">
               <FaFacebookF />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="#" target="_blank" rel="noopener noreferrer">
               <FaInstagram />
             </a>
           </div>
