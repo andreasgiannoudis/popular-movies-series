@@ -1,3 +1,5 @@
+// movies.module.scss
+
 .moviesContainer {
   padding: 20px;
   background-color: #f8f9fa;
@@ -25,6 +27,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.2s;
+    img{
+      width: 100%;
+    }
 
     &:hover {
       transform: scale(1.05);
@@ -112,4 +117,26 @@
       color: #343a40;
     }
   }
+}
+
+// Custom styles for react-slick
+.slick-prev, .slick-next {
+  z-index: 1;
+  top: 50%;
+  width: auto;
+  height: auto;
+  color: #343a40;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 30px;
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+  color: #343a40;
 }

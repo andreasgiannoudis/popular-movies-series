@@ -2,10 +2,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout';
+import Slider from 'react-slick';
 import styles from '../../styles/movies.module.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [highestRatedMovies, setHighestRatedMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -22,6 +26,23 @@ const Movies = () => {
       console.error('Error fetching the movies:', error);
     });
   }, []);
+
+  useEffect(() => {
+    fetchHighestRatedMovies();
+  }, []);
+
+  const fetchHighestRatedMovies = async () => {
+    try {
+      const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
+        params: {
+          api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+        },
+      });
+      setHighestRatedMovies(response.data.results.slice(0, 20));
+    } catch (error) {
+      console.error('Error fetching highest rated movies:', error);
+    }
+  };
 
   const fetchMovieDetails = async (movieId) => {
     try {
@@ -45,6 +66,17 @@ const Movies = () => {
     }
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
+
   return (
     <Layout>
       <div className={styles.moviesContainer}>
@@ -65,6 +97,24 @@ const Movies = () => {
             </li>
           ))}
         </ul>
+
+        <h1>Highest ranking Movies</h1>
+        <Slider {...settings}>
+          {highestRatedMovies.map(movie => (
+            <div key={movie.id} className={styles.movieItem} onClick={() => fetchMovieDetails(movie.id)}>
+              <img 
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                alt={`${movie.title}`} 
+                className={styles.trendingMoviePoster}
+              />
+              <div className={styles.movieDetails}>
+                <h2>{movie.title}</h2>
+                <p><strong>Release Date:</strong> {movie.release_date} </p>
+                <p>{movie.overview}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
 
       {isPopupOpen && selectedMovie && (
